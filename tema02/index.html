@@ -102,8 +102,36 @@
         </p>
       </div>
     </div>
+    <div class="row mt-4">
+    <div class="col-12 col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title h5">Ejemplo de compatibilidad: Anchor positioning transforms</h2>
+          <p class="card-text">
+            Permite colocar un elemento (por ejemplo un tooltip) junto a otro aunque
+            este último tenga transformaciones CSS. Funciona en Chrome y Edge desde la
+            versión 144, pero no está soportado en Firefox ni en Safari, ni en
+            ordenador ni en iPhone.
+          </p>
+          <a href="https://caniuse.com/wf-anchor-positioning-transforms" class="card-link">Ver en caniuse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4 mb-4">
+    <div class="col-12 col-md-8">
+      <h2 class="h5">Reflexión</h2>
+      <p>
+        Si un cliente me encarga una web, la probaría primero en Chrome, porque es el
+        navegador más usado y el de Android. Después en Safari, sobre todo en iPhone,
+        donde todos los navegadores usan WebKit, y en Firefox, que tiene un motor
+        distinto. Probar en estos tres cubre los tres motores principales y evita
+        sorpresas como la del ejemplo anterior, que solo funciona en Chromium.
+      </p>
+    </div>
+  </div>
   </main>
-  <!-- JS de Bootstrap (navbar que se pliega, modales, dropdowns...). Al final del body -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
