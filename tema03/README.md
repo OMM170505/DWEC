@@ -10,7 +10,7 @@
 > 4. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
 > 5. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
 
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live**, abrir la consola con F12 y pulsar «Ejecutar» en cada ejercicio.]
+Esta carpeta contiene una página con Bootstrap que funciona como: cuatro cards (variables y typeof, conversiones, comparaciones, ...), cada una con su código, su tabla «Espero / Sale» y un botón «Ejecutar». Para probarla se abre index.html, se pulsa F12 para ver la consola y se pulsa «Ejecutar» en cada ejercicio.
 
 ## Capturas
 
@@ -18,31 +18,31 @@
 
 <img src="capturas/a-pagina.png" alt="La página entera con mi nombre en la navbar" width="600">
 
-[Qué se ve: tu nombre en la navbar, las cuatro cards y los fallos de predicción marcados.]
+Se ve mi nombre en el navbar, las cuatro cards con sus tablas y los badges <<FALLE>> en las predicciones en las que me equivoque. 
 
 ### b) Consola del ejercicio 1
 
 ![Consola del ejercicio 1](capturas/b-consola-ej1.png)
 
-[Qué se ve, en una o dos líneas.]
+La consola muestra el valor y Typeof de cada variable. sinDato sale como Object aunque vale null y notaFinal pasa de undefined a number
 
 ### c) Consola del ejercicio 2
 
 ![Consola del ejercicio 2](capturas/c-consola-ej2.png)
 
-[Qué se ve, en una o dos líneas.]
+Aparece las onces conversaciones con su resultado y tipo, entre ellas Number("12abc"), que da NaN y Number("") que da 0.
 
 ### d) Consola del ejercicio 3
 
 ![Consola del ejercicio 3](capturas/d-consola-ej3.png)
 
-[Qué se ve, en una o dos líneas.]
+Se ven las seis expresiones que mezclan tipos y las tres parejas comparadas con == y ===
 
 ### e) Consola del ejercicio 4, con el error de la const
 
 ![Consola del ejercicio 4 con el error de la const](capturas/e-consola-ej4.png)
 
-[Qué se ve, en una o dos líneas.]
+Se ve la ficha hecha con plantilla de cadena y con +, el true de compararlas con === y debajo TypeError al reasignar una const en la consola
 
 ## Reflexión
 
@@ -50,8 +50,10 @@
 
 ## Fuentes
 
-- [Título de la página](https://enlace-a-la-fuente)
+- [typeof · MDN Web Docs](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/typeof)
+- [Igualdad y comparaciones · MDN Web Docs](https://developer.mozilla.org/es/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+- [Plantillas de cadena · MDN Web Docs](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals)
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+He utilizado Claude para montar app.jss comprendiendolo y en index las partes de function logs que no las lograba comprender.
