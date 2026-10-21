@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Cambia [Tu nombre] por tu nombre -->
+  <title>Calculadora y bucles · Oliver Montes Marcos</title>
+
+  <!-- CSS de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!--
+    PLANTILLA DE LA TAREA 4
+    · Solo trae lo imprescindible para empezar. La maquetación con Bootstrap es cosa tuya y cuenta en la nota:
+      rejilla (row y col-*) que se adapte al móvil, cards, botones con color, grupos de botones, iconos...
+    · Todo lo que va entre [corchetes] es un hueco: sustitúyelo por lo tuyo.
+    · Tu JavaScript va en js/app.js. El archivo js/ayudas.js NO se toca.
+  -->
+
+  <!-- NAVBAR con tu nombre -->
+  <nav class="navbar bg-primary" data-bs-theme="dark">
+    <div class="container">
+      <span class="navbar-brand"><i class="bi bi-person-circle"></i> Oliver Montes Marcos</span>
+      <span class="navbar-text">Tarea 4 · DWEC</span>
+    </div>
+  </nav>
+
+  <!-- CABECERA -->
+  <header class="bg-body-tertiary border-bottom py-4 mb-4">
+    <div class="container">
+      <h1 class="h2 mb-1">Calculadora y bucles</h1>
+      <p class="lead mb-0 text-body-secondary">Operadores aritméticos, comparaciones y los bucles for, while y do…while.</p>
+      <p class="small mb-0 mt-2">Escribe dos números y pulsa un botón. Cada botón deja también su rastro en la consola (<kbd>F12</kbd>).</p>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+
+    <!-- Fila 1: los números (izquierda) y el resultado (derecha) -->
+    <div class="row g-4 mb-4">
+
+      <!-- LOS NÚMEROS. No cambies los id: leerNumero("numero1") y leerNumero("numero2") los buscan por su id -->
+      <div class="col-12 col-lg-4">
+        <section class="card h-100">
+          <div class="card-header"><i class="bi bi-123"></i> Los números</div>
+          <div class="card-body">
+            <label for="numero1" class="form-label">Número 1</label>
+            <input type="number" id="numero1" class="form-control mb-3">
+            <label for="numero2" class="form-label">Número 2</label>
+            <input type="number" id="numero2" class="form-control mb-3">
+            <p class="small text-body-secondary mb-0">
+              El número 1 dice también cuántas veces se repite cada bucle: un entero, 20 como máximo.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- RESULTADO. Aquí escriben mostrar(), anadirLinea() y anadirBadge(). No cambies el id -->
+      <div class="col-12 col-lg-8">
+        <section class="card h-100 border-primary">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-display"></i> Resultado</span>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="limpiarSalida()">
+              <i class="bi bi-eraser"></i> Borrar
+            </button>
+          </div>
+          <div class="card-body">
+            <div id="salida"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Fila 2: un ejercicio por card. Móvil: una debajo de otra; pantalla grande: tres columnas -->
+    <div class="row g-4">
+
+      <!-- EJERCICIO 1 · Calculadora -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <section class="card h-100">
+          <div class="card-header"><span class="badge text-bg-primary">1</span> Calculadora</div>
+          <div class="card-body">
+            <!-- Cada botón llama con onclick a su función de js/app.js, como en la tarea 3 -->
+            <div class="row g-2">
+              <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" onclick="sumar()"><i class="bi bi-plus-lg"></i> Sumar</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" onclick="restar()"><i class="bi bi-dash-lg"></i> Restar</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" onclick="multiplicar()"><i class="bi bi-x-lg"></i> Multiplicar</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" onclick="dividir()"><i class="bi bi-slash-lg"></i> Dividir</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" onclick="potencia()"><i class="bi bi-chevron-double-up"></i> Potencia</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" onclick="modulo()"><i class="bi bi-percent"></i> Módulo</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- EJERCICIO 2 · Comparaciones: «¿Cuál es mayor?» → cualEsMayor()     «¿Par o impar?» → parOImpar() -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <section class="card h-100">
+          <div class="card-header"><span class="badge text-bg-info">2</span> Comparaciones</div>
+          <div class="card-body">
+            <div class="d-grid gap-2">
+              <button type="button" class="btn btn-info" onclick="cualEsMayor()"><i class="bi bi-arrow-left-right"></i> ¿Cuál es mayor?</button>
+              <button type="button" class="btn btn-info" onclick="parOImpar()"><i class="bi bi-hash"></i> ¿Par o impar?</button>
+            </div>
+            <p class="small text-body-secondary mt-3 mb-0">«¿Par o impar?» solo mira el número 1.</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- EJERCICIOS 3 Y 4 · Bucles: una card con dos grupos de botones (btn-group)
+           Con texto:  for → bucleFor()    while → bucleWhile()    do…while → bucleDoWhile()
+           Con badges: for → badgesFor()   while → badgesWhile()   do…while → badgesDoWhile() -->
+      <div class="col-12 col-lg-4">
+        <section class="card h-100">
+          <div class="card-header">
+            <span class="badge text-bg-success">3</span>
+            <span class="badge text-bg-success">4</span> Bucles
+          </div>
+          <div class="card-body">
+            <p class="mb-1">Con texto</p>
+            <div class="btn-group w-100 mb-3" role="group" aria-label="Bucles con texto">
+              <button type="button" class="btn btn-success" onclick="bucleFor()">for</button>
+              <button type="button" class="btn btn-success" onclick="bucleWhile()">while</button>
+              <button type="button" class="btn btn-success" onclick="bucleDoWhile()">do…while</button>
+            </div>
+
+            <p class="mb-1">
+              Con badges
+              <span class="badge text-bg-primary">pares</span>
+              <span class="badge text-bg-secondary">impares</span>
+            </p>
+            <div class="btn-group w-100" role="group" aria-label="Bucles con badges">
+              <button type="button" class="btn btn-outline-success" onclick="badgesFor()">for</button>
+              <button type="button" class="btn btn-outline-success" onclick="badgesWhile()">while</button>
+              <button type="button" class="btn btn-outline-success" onclick="badgesDoWhile()">do…while</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-body-tertiary border-top py-3">
+    <div class="container small text-body-secondary">
+      Oliver Montes Marcos · DWEC 26/27 · Tarea 4 · Las capturas, la reflexión y las fuentes están en el README.
+    </div>
+  </footer>
+
+  <!-- JS de Bootstrap, las funciones de ayuda y, después, tu JavaScript. Este orden importa -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/ayudas.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
