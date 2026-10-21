@@ -155,7 +155,19 @@ function parOImpar() {
     console.log(`¿Par o impar?: ${n1} es ${palabra}`);
   }
 }
+//funciones auxiliares para los bucles
 
+// true si el número no sirve para repetir: falta, tiene decimales o pasa de MAXIMO_REPETICIONES
+function repeticionesNoValidas(veces) {
+  return Number.isNaN(veces) || !Number.isInteger(veces) || veces > MAXIMO_REPETICIONES;
+}
+function errorDeRepeticiones(veces, nombreBucle) {
+  mostrar(`El número 1 tiene que ser un entero que no pase de ${MAXIMO_REPETICIONES}.`, "danger");
+  console.error(`${nombreBucle}: número no válido (${veces})`);
+}
+function textoTotal(contador) {
+  return `Total: ${contador} ${contador === 1 ? "repetición" : "repeticiones"}`;
+}
 
 // ============================================================
 // Ejercicio 3 · Bucles con texto
@@ -166,19 +178,68 @@ function bucleFor() {
   const veces = leerNumero("numero1");
   limpiarSalida();
 
-  // TODO: si el número falta, tiene decimales o pasa de MAXIMO_REPETICIONES, muestra un error en rojo.
-  // TODO: si no, repite con un for tantas veces como diga «veces». En cada vuelta:
-  //         anadirLinea(`for · repetición ${i} de ${veces}`);
-  //       y cuenta las vueltas en una variable contador.
-  // TODO: al terminar, añade una línea con el total: «Total: 5 repeticiones» o «Total: 1 repetición».
+  // Si el número falta, tiene decimales o pasa de MAXIMO_REPETICIONES, error en rojo.
+  if (repeticionesNoValidas(veces)) {
+    errorDeRepeticiones(veces, "for");
+    return;
+  }
+
+  // Repite con un for tantas veces como diga «veces» y cuenta las vueltas en contador.
+  let contador = 0;
+  for (let i = 1; i <= veces; i++) {
+    anadirLinea(`for · repetición ${i} de ${veces}`);
+    contador++;
+  }
+
+  // Al terminar, una línea con el total: «Total: 5 repeticiones» o «Total: 1 repetición».
+  anadirLinea(textoTotal(contador));
+  console.log(`for: ${contador} vueltas con el número ${veces}`);
 }
 
 function bucleWhile() {
-  // TODO: lo mismo que bucleFor(), con un while.
+  // Lo mismo que bucleFor(), con un while.
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (repeticionesNoValidas(veces)) {
+    errorDeRepeticiones(veces, "while");
+    return;
+  }
+
+  let contador = 0;
+  let i = 1;
+  // while comprueba la condición ANTES de cada vuelta: con 0 no entra ni una vez
+  while (i <= veces) {
+    anadirLinea(`while · repetición ${i} de ${veces}`);
+    contador++;
+    i++;
+  }
+
+  anadirLinea(textoTotal(contador));
+  console.log(`while: ${contador} vueltas con el número ${veces}`);
 }
 
 function bucleDoWhile() {
-  // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
+  // Lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (repeticionesNoValidas(veces)) {
+    errorDeRepeticiones(veces, "do…while");
+    return;
+  }
+
+  let contador = 0;
+  let i = 1;
+  // do…while ejecuta el bloque primero y comprueba DESPUÉS: siempre da una vuelta, incluso con 0 o negativo
+  do {
+    anadirLinea(`do…while · repetición ${i} de ${veces}`);
+    contador++;
+    i++;
+  } while (i <= veces);
+
+  anadirLinea(textoTotal(contador));
+  console.log(`do…while: ${contador} vueltas con el número ${veces}`);
 }
 
 
