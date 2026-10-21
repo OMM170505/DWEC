@@ -1,6 +1,6 @@
 # Tarea 4 · Calculadora y bucles
 
-**Autor:** [Tu nombre y apellidos] · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
+**Autor:** Oliver Montes Marcos · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
 
 > **Plantilla de la tarea 4.** Cómo usarla:
 >
@@ -11,7 +11,7 @@
 > 5. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
 > 6. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
 
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live**, escribir dos números y pulsar los botones con la consola abierta (F12).]
+Pagina con una calculadora, dos comparaciones y seis bucles, hecha en Bootstrap. Para probarla: Abrir carpeta en VS Code, pulsar Go Live, escribir dos numeros o uno depende de la accion y pulsar los botones con la consola abierta F12
 
 ## Capturas
 
@@ -19,40 +19,45 @@
 
 <img src="capturas/a-pagina.png" alt="La página entera con mi nombre en la navbar" width="600">
 
-[Qué se ve: tu nombre en la navbar y cómo has repartido las cards con la rejilla.]
+Se ve mi nombre en navbar y pie de pagina. Arriba estan las cards de los numeros y resultado, debajo una card por ejercicio, repartidas en columnas con la rejilla Bootstrap.
 
 ### b) La página en el móvil
 
 <img src="capturas/b-movil.png" alt="La página en el modo móvil de las herramientas de desarrollo" width="300">
 
-[Qué cambia respecto a la pantalla grande.]
+En el modo movil de F12 (400px de ancho) las cards pasan a una sola columna, una debajo de otra y los botones ocupan todo el ancho.
 
 ### c) El error de dividir entre 0
 
 ![El error de dividir entre 0 con la consola abierta](capturas/c-dividir-cero.png)
 
-[Qué se ve en la página y en la consola.]
+Con 5 y 0, el boton dividir muestra en la pagina un aviso rojo y en consola un error con la operacion que se intento. Sin el IF, javascript habria devuelto Infinity
 
 ### d) Los tres bucles con el número 0
 
 ![Los tres bucles de texto con el número 0 y la consola abierta](capturas/d-bucles-cero.png)
 
-[Cuántas veces se repite cada bucle y por qué.]
+Con el numero 1 en 0, for y while dan 0 vueltas y do...while da 1. En la consola se ven 3 lineas y en la pagina queda el resultado del ultimo bucle pulsado en este caso do...while
 
 ### e) Un bucle con badges
 
 ![Un bucle con badges](capturas/e-badges.png)
 
-[Qué número has puesto y cómo eliges el color de cada badge.]
+Con el numero 7 salen siete badges. El color se elige con el ternario i % 2 === 0 ? "primary" : "secondary", los pares en azul y impares en gris. Debajo aparece el total.
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿en qué se diferencian for, while y do…while y cuándo usarías cada uno? Pon como ejemplo lo que pasó con el 0.]
+Los 3 bucles repiten un bloque, pero se diferencian en cuando comprueban la condicion. 
+For junta inicio, condicion y avance en una linea, y es el que uso cuando se cuantas veces repetir.
+While comprueba condicion antes de cada vuelta y usaria cuando la repeticion depende de algo que va cambiando
+Do...while ejecuta el bloque primero y despues comprueba, asi que al menos 1 vuelta da.
+Lo vi con el 0, el bucle for y while no entraron ninguna vez, porque 1 <= 0 ya es falso al empezar pero do...while entro una, porque la comprobacion llega al final. Por eso solo lo usaria cuando el bloque tenga que ejecutarse una vez minimo, por ejemplo para pedir un dato
 
 ## Fuentes
 
-- [Título de la página](https://enlace-a-la-fuente)
+- [Bootstrap 5.3: sistema de rejilla](https://getbootstrap.com/docs/5.3/layout/grid/)
+- [MDN: do...while](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/do...while)
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+He usado Claude, para orientarme con codigos y para solucionar algun fallo de GitHub. 
