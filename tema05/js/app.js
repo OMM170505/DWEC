@@ -87,7 +87,7 @@ function activarResaltado() {
 // ============================================================
 
 function cambiarTexto() {
- const texto = document.querySelector("#nuevoTexto").ariaValueMax.trim();
+ const texto = document.querySelector("#nuevoTexto").value.trim();
  const error = document.querySelector("#error4");
 
  if (texto === "") {
@@ -145,6 +145,9 @@ function anadirTarea() {
   const span = document.createElement("span");
   span.textContent = texto;
 
+  li.append(casilla, span);
+  document.querySelector("#listaTareas").append(li);
+
   entrada.value = "";
   document.querySelector("#totalTareas").textContent = 
     document.querySelector("#listaTareas").children.length;
@@ -184,8 +187,27 @@ function verDatosVentana() {
   const alto = window.innerHeight;
   document.querySelector("#datoVentana").textContent = `${ancho} × ${alto} px`;
 
-  // TODO: con if / else if, el punto de corte de Bootstrap según el ancho: xs (< 576), sm (≥ 576), md (≥ 768),
-  //       lg (≥ 992), xl (≥ 1200) y xxl (≥ 1400). Escríbelo en #datoPunto.
-  // TODO: el tamaño de la pantalla (screen.width y screen.height) en #datoPantalla.
-  // TODO: la URL (location.href) en #datoUrl y el idioma del navegador (navigator.language) en #datoIdioma.
+  let punto;
+  if (ancho >= 1400) {
+    punto = "xxl";
+  } else if (ancho >= 1200) {
+    punto = "xl";
+  } else if (ancho >= 992) {
+    punto = "lg";
+  } else if (ancho >= 768) {
+    punto = "md";
+  } else if (ancho >= 576) {
+    punto = "sm";
+  } else {
+    punto = "xs";
+  }
+
+  document.querySelector("#datoPunto").textContent = punto;
+
+  document.querySelector("#datoPantalla").textContent = `${screen.width} × ${screen.height} px`;
+  document.querySelector("#datoUrl").textContent = location.href;
+  document.querySelector("#datoIdioma").textContent = navigator.language;
+
+  console.log("Datos de la ventana mostrados, punto de corte " + punto);
+
 }
