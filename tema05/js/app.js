@@ -87,14 +87,32 @@ function activarResaltado() {
 // ============================================================
 
 function cambiarTexto() {
-  // TODO: lee lo escrito en #nuevoTexto con value y quítale los espacios de los extremos con trim().
-  // TODO: si está vacío, muestra el error #error4 (quítale "d-none") y no cambies nada.
-  // TODO: si no, pon ese texto en el primer párrafo de #contenido con textContent y oculta el error.
+ const texto = document.querySelector("#nuevoTexto").ariaValueMax.trim();
+ const error = document.querySelector("#error4");
+
+ if (texto === "") {
+  error.classList.remove("d-none");
+  console.log("Campo vacio: no se cambia nada");
+  return;
+ }
+ error.classList.add("d-none");
+ document.querySelector("#contenido p").textContent = texto;
+ console.log("Cambiado con textContent: " + texto);
 }
 
 function cambiarConHtml() {
-  // TODO: lo mismo que cambiarTexto(), pero con innerHTML.
-  //       Prueba las dos con <b>hola</b> y explica en el README qué diferencia ves y por qué es peligroso.
+  const texto = document.querySelector("#nuevoTexto").value.trim();
+  const error = document.querySelector("#error4");
+  
+    if (texto === "") {
+    error.classList.remove("d-none");
+    console.log("Campo vacío: no se cambia nada");
+    return;
+  }
+
+  error.classList.add("d-none");
+  document.querySelector("#contenido p").innerHTML = texto;
+  console.log("Cambiado con innerHTML: " + texto);
 }
 
 
