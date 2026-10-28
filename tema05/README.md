@@ -35,6 +35,7 @@
 ### d) Ejercicio 4: `<b>hola</b>` con innerHTML
 
 <img src="capturas/d-ej4-innerhtml.png" alt="El primer párrafo tras usar innerHTML" width="600">
+<img src="capturas/d-ej4.1-innerhtml.png" alt="El primer párrafo tras usar innerHTML" width="600">
 
 [Qué salía con «Cambiar texto» y qué sale con innerHTML.]
 
