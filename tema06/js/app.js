@@ -145,7 +145,6 @@ mostrarColores();  // pinta los tres colores de partida nada más cargar
 // ============================================================
 // Ejercicio 3 · Catálogo de productos
 // ============================================================
-
 // Puedes cambiar los productos por otros, pero deja al menos seis, con estas tres propiedades
 const productos = [
   { nombre: "Teclado mecánico", precio: 79.9, categoria: "Periféricos" },
