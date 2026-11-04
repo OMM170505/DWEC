@@ -36,26 +36,45 @@ function comoTexto(lista) {
 //       Por ejemplo: «Soy [nombre] [apellidos], tengo [edad] años y estudio [curso].»
 const estudiante = {
 
+  nombre: "Oliver",
+  apellidos: "Montes Marcos",
+  edad: 21,
+  curso: "2 DAW",
+  presentarse: function() {
+    return "Soy " + this.nombre + " " + this.apellidos + ", tengo " + this.edad + " años y estudio " + this.curso + ".";
+  }
 };
 
 function verFicha() {
-  // TODO: vacía #salida1 (textContent = "").
-  // TODO: crea un <ul class="list-group"> con un <li class="list-group-item"> por propiedad: «nombre: ...», «edad: ...».
-  //       Pista: guarda las claves en un array, ["nombre", "apellidos", "edad", "curso"], recórrelo con forEach
-  //       y lee cada valor con corchetes: estudiante[clave].
-  // TODO: debajo, un <p> con la frase de estudiante.presentarse().
-  // TODO: console.log() del objeto entero.
+  const salida = document.querySelector("#salida1");
+  salida.textContent = "";
+  const lista = document.createElement("ul");
+  lista.classList.add("list-group", "mb-3");
+  const claves = ["nombre", "apellidos", "edad", "curso"];
+  claves.forEach(function (clave) {
+    const elemento = document.createElement("li");
+    elemento.classList.add("list-group-item");
+    elemento.textContent = clave + ": " + estudiante[clave];
+    lista.append(elemento);
+  });
+  salida.append(lista);
+  const presentacion = document.createElement("p");
+  presentacion.textContent = estudiante.presentarse();
+  salida.append(presentacion);
+  console.log("Ejercicio 1: ficha", estudiante);
 }
 
 function cumplirAnios() {
-  // TODO: suma 1 a la edad del estudiante y vuelve a pintar la ficha (llama a verFicha()).
+  estudiante.edad = estudiante.edad + 1;
+  verFicha();
+  console.log("Ejercicio 1: nueva edad", estudiante.edad);
 }
 
 function quitarCurso() {
-  // TODO: borra la propiedad curso con delete y vuelve a pintar la ficha.
-  //       Fíjate en lo que sale ahora en el curso y explícalo en el README.
+  delete estudiante.curso;
+  verFicha();
+  console.log("Ejercicio 1: curso eliminado", estudiante);
 }
-
 
 // ============================================================
 // Ejercicio 2 · Colores
@@ -102,7 +121,14 @@ function anadirColor() {
 
 function quitarUltimo() {
   // TODO: si la lista está vacía, avisa con avisar2() y no hagas nada más.
+  if (colores.length === 0) {
+    avisar2("La lista de colores está vacía.");
+    return;
+  }
   // TODO: si no, saca el último con pop(), vuelve a pintar la lista y di en la consola qué color ha salido.
+  const colorQuitado = colores.pop();
+  mostrarColores();
+  console.log("Ejercicio 2: pop →", colorQuitado);
 }
 
 function quitarPrimero() {
