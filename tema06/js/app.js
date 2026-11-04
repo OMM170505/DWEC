@@ -85,15 +85,13 @@ const colores = ["rojo", "verde", "azul"];
 
 function mostrarColores() {
   const lista = document.querySelector("#listaColores");
-  lista.textContent = "";   // vaciamos la lista antes de volver a pintarla
-
+  lista.textContent = "";
   colores.forEach(function (color) {
     const li = document.createElement("li");
     li.classList.add("list-group-item");
     li.textContent = color;
     lista.append(li);
   });
-
   document.querySelector("#totalColores").textContent = colores.length;
 }
 
@@ -106,13 +104,12 @@ function avisar2(mensaje) {
 function anadirColor() {
   const casilla = document.querySelector("#color");
   const color = casilla.value.trim();
-
   if (color === "") {
     avisar2("Escribe un color antes de pulsar «Añadir».");
+    console.log("Ejercicio 2: no se ha añadido ningún color");
     return;
   }
-
-  colores.push(color);   // push añade al final
+  colores.push(color);
   casilla.value = "";
   document.querySelector("#aviso2").classList.add("d-none");
   mostrarColores();
@@ -120,22 +117,29 @@ function anadirColor() {
 }
 
 function quitarUltimo() {
-  // TODO: si la lista está vacía, avisa con avisar2() y no hagas nada más.
   if (colores.length === 0) {
-    avisar2("La lista de colores está vacía.");
+    avisar2("No hay colores para quitar.");
+    console.log("Ejercicio 2: lista vacía");
     return;
   }
-  // TODO: si no, saca el último con pop(), vuelve a pintar la lista y di en la consola qué color ha salido.
-  const colorQuitado = colores.pop();
+  const eliminado = colores.pop();
+  document.querySelector("#aviso2").classList.add("d-none");
   mostrarColores();
-  console.log("Ejercicio 2: pop →", colorQuitado);
+  console.log("Ejercicio 2: pop ha quitado", eliminado);
 }
 
 function quitarPrimero() {
-  // TODO: lo mismo que quitarUltimo(), pero sacando el primero con shift().
+  if (colores.length === 0) {
+    avisar2("No hay colores para quitar.");
+    console.log("Ejercicio 2: lista vacía");
+    return;
+  }
+  const eliminado = colores.shift();
+  document.querySelector("#aviso2").classList.add("d-none");
+  mostrarColores();
+  console.log("Ejercicio 2: shift ha quitado", eliminado);
 }
-
-mostrarColores();   // pinta los tres colores de partida nada más cargar
+mostrarColores();  // pinta los tres colores de partida nada más cargar
 
 
 // ============================================================
