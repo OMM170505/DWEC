@@ -1,5 +1,5 @@
 /*
-  Tarea 6 · DWEC · [Tu nombre y apellidos]
+  Tarea 6 · DWEC · Oliver Montes Marcos
   Objetos y arrays.
 
   Cómo usar esta plantilla:
