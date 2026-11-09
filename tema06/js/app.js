@@ -53,6 +53,8 @@ const estudiante = {
 
 // «Ver ficha»: lista con las cuatro propiedades y, debajo, la frase de presentarse().
 function verFicha() {
+  // querySelector("#salida1") busca en el HTML el elemento con id="salida1" (el div donde se muestra el resultado).
+  // textContent = "" lo vacía, para que al pulsar el botón otra vez no se acumule la ficha anterior.
   const salida = document.querySelector("#salida1");
   salida.textContent = "";
   const lista = document.createElement("ul");
