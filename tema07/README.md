@@ -1,17 +1,8 @@
 # Tarea 7 · Funciones, flechas y clases
 
-**Autor:** [Tu nombre y apellidos] · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
+**Autor:** Oliver Montes Marcos · Desarrollo Web en Entorno Cliente (DWEC) · 2.º DAW · Curso 2026-27
 
-> **Plantilla de la tarea 7.** Cómo usarla:
->
-> 1. Copia esta carpeta en tu repositorio de DWEC y cámbiale el nombre a `tema07`.
-> 2. `index.html` ya está maquetado: una card por ejercicio (el 6 tiene dos). No cambies los `id` ni el `onclick` de los botones.
-> 3. `js/app.js` trae una función por botón con `TODO`. Ya están hechas `pintarLista()`, `formatearEuros()`, `pintarAlumnos()` y un modelo en los ejercicios 3, 4 y 6.
-> 4. Flechas en todos los callbacks y nunca una flecha como método. Las funciones de los botones, con `function`.
-> 5. Sustituye las imágenes de `capturas/` por las tuyas, **con el mismo nombre**.
-> 6. Todo lo que va entre [corchetes] es un hueco: cámbialo por lo tuyo. Al terminar, borra este aviso.
-
-[Una o dos líneas: qué hay en esta carpeta y cómo se ve. Por ejemplo: abrir la carpeta en VS Code, pulsar **Go Live** y probar los botones con la consola abierta (F12).]
+Página con seis ejercicios sobre funciones que devuelven valores, callbacks con flecha, closures, clases y los objetos String, Math y Date. Para verla, abre la carpeta en VS Code, pulsa **Go Live** y prueba los botones con la consola abierta (F12): cada función deja su rastro con `console.log()`.
 
 ## Capturas
 
@@ -19,40 +10,45 @@
 
 <img src="capturas/a-pagina.png" alt="La página recién cargada con mi nombre en la navbar" width="600">
 
-[Qué se ve nada más cargar: tu nombre y los dos alumnos de partida.]
+Nada más cargar se ve mi nombre en la navbar y los dos alumnos de partida del ejercicio 5: Lucía Martín Ortega (un `Alumno`) y Pablo García López (un `AlumnoFCT` en InnovaTech, con la etiqueta FCT).
 
 ### b) Ejercicios 1 y 2: el precio y las películas
 
 <img src="capturas/b-ej1-ej2.png" alt="El desglose del precio y una lista de películas" width="600">
 
-[Un precio con descuento y uno de los botones de las películas. Qué hace calcularPrecio() y qué hace mostrarPrecio().]
+Un precio de 100 € con un 10 % de descuento y el 21 % de IVA da 108,90 €. `calcularPrecio()` solo calcula y devuelve el resultado con `return`; `mostrarPrecio()` lee el formulario, valida y pinta el desglose. A la derecha, el botón «Por año», con `sort` sobre una copia del array.
 
 ### c) Ejercicios 3 y 4: tu callback y los contadores
 
 ![El resultado de transformar y los dos contadores](capturas/c-ej3-ej4.png)
 
-[Qué hace transformar() por dentro y por qué cada contador lleva su propia cuenta.]
+`transformar()` recorre la lista con `for…of`, llama al callback con cada número y guarda lo que devuelve en un array nuevo, así que `numeros` no cambia y el resultado coincide con el de `map`. Los dos contadores no se mezclan porque cada llamada a `crearContador()` crea su propia variable `cuenta`, y la función que devuelve la sigue recordando aunque `crearContador()` ya haya terminado: eso es un closure. Si escribo `cuenta` en la consola sale `ReferenceError: cuenta is not defined`, porque esa variable solo existe dentro de la función y no se puede tocar desde fuera.
 
 ### d) Ejercicio 5: los alumnos
 
 ![Las tarjetas de los alumnos](capturas/d-ej5-clases.png)
 
-[Al menos cuatro alumnos, alguno en prácticas. Cómo decide tu código si crea un Alumno o un AlumnoFCT.]
+Cuatro alumnos, dos de ellos en prácticas. `crearAlumno()` mira la casilla de la empresa: si está vacía crea un `Alumno` con `new` y, si no, un `AlumnoFCT`, que hereda de `Alumno` con `extends` y llama a `super()` en el constructor y a `super.presentarse()` para añadir la empresa.
 
 ### e) Ejercicio 6: fechas y textos
 
 ![Los días que faltan para una fecha y unas iniciales](capturas/e-ej6-fechas-textos.png)
 
-[Qué fecha has probado, cuántos días salen y por qué redondeas.]
+He probado con el 25 de diciembre de 2026. Pongo hoy a medianoche con `setHours(0, 0, 0, 0)` y redondeo con `Math.round` porque, con el cambio de hora, algún día tiene 23 o 25 horas y la división no da un número entero. Las iniciales funcionan aunque el nombre tenga espacios dobles gracias al `filter`.
 
 ## Reflexión
 
-[De 5 a 8 líneas: ¿qué cambia al pasar un callback de function a flecha? ¿Cuándo hace falta el return? ¿Por qué un método no se escribe con flecha? Pon un ejemplo de tu propio código.]
+Al pasar un callback de `function` a flecha, el código hace lo mismo pero se lee mejor: desaparece la palabra `function` y, si el cuerpo es solo una expresión, también las llaves y el `return`, porque la flecha devuelve el valor sola. El `return` solo hace falta cuando pongo llaves; si las pongo y lo olvido, la función devuelve `undefined`. Por ejemplo, en mi código `peliculas.filter(function (pelicula) { return pelicula.duracion > 120; })` ha quedado como `peliculas.filter((pelicula) => pelicula.duracion > 120)`. Los métodos de una clase no se escriben con flecha porque la flecha no tiene su propio `this`, sino que lo coge del sitio donde se escribe; en `media()` necesito que `this` sea el alumno que llama al método para leer sus `this.notas`, y eso solo lo garantiza la forma corta `media() { … }`.
 
 ## Fuentes
 
-- [Título de la página](https://enlace-a-la-fuente)
+- [Funciones flecha · MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [Parámetros predeterminados · MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+- [Closures · MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Closures)
+- [Clases · MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes)
+- [Date.prototype.toLocaleDateString() · MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString)
+- [String.prototype.padStart() · MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/padStart)
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+He usado Claude como apoyo para resolver los ejercicios paso a paso: me propuso el código de cada función con una explicación de cómo funciona y los resultados que tenía que dar cada botón.

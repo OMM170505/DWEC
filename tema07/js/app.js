@@ -1,10 +1,8 @@
 /*
-  Tarea 7 · DWEC · [Tu nombre y apellidos]
+  Tarea 7 · DWEC · Oliver Montes Marcos
   Funciones, flechas y clases.
 
-  Cómo usar esta plantilla:
-  · Hay una función por botón. Escribe tu código donde pone TODO y, cuando termines, borra el TODO.
-  · La regla de este tema:
+  Reglas que sigo en este tema:
       - declaración, function nombre() { ... }, para las funciones con nombre, como las de los botones;
       - FLECHA para todos los callbacks: forEach, map, filter, sort, reduce, find, some...;
       - nunca una flecha como método: en las clases, la forma corta media() { ... }.
@@ -38,10 +36,8 @@ function pintarLista(selector, textos) {
 // Ejercicio 1 · Precio final
 // ============================================================
 
-// TODO: calcularPrecio(base, iva, descuento) devuelve el precio final con return. No lee ni pinta nada.
-//       iva vale 21 por defecto y descuento, 0 por defecto (parámetros por defecto).
-//       Primero se resta el descuento (un tanto por ciento de la base) y después se suma el IVA.
-//       Comprueba en la consola: calcularPrecio(100) tiene que dar 121.
+// Devuelve el precio final: primero resta el descuento y después suma el IVA. No lee ni pinta nada.
+// iva y descuento tienen valores por defecto (21 y 0). calcularPrecio(100) da 121.
 function calcularPrecio(base, iva = 21, descuento = 0) {
   const conDescuento = base - (base * descuento) / 100;
   const precioFinal = conDescuento + (conDescuento * iva) / 100;
@@ -118,9 +114,7 @@ function comoTexto(pelicula) {
   return `${pelicula.titulo} (${pelicula.anio}) · ${pelicula.duracion} min`;
 }
 
-// Las cuatro funciones siguientes ya funcionan, pero sus callbacks están escritos con function, como en el tema 6.
-// TODO: pasa a flecha los cuatro callbacks (map, filter, sort y reduce). Si el cuerpo es solo una expresión,
-//       sin llaves ni return. Comprueba después que cada botón sigue dando lo mismo.
+// Callbacks con flecha: como el cuerpo es solo una expresión, van sin llaves ni return.
 
 function verTitulos() {
   const titulos = peliculas.map((pelicula) => pelicula.titulo);
@@ -158,7 +152,8 @@ function buscarAntigua() {
     document.querySelector("#mensaje2").textContent = "No hay ninguna película anterior a 1990.";
     console.log("Ejercicio 2: find → undefined");
     return;
-  } 
+  }
+
   pintarLista("#salida2", [comoTexto(antigua)]);
   document.querySelector("#mensaje2").textContent = "La primera película anterior a 1990.";
   console.log("Ejercicio 2: find →", antigua);
@@ -172,9 +167,7 @@ function buscarAntigua() {
 const numeros = [3, -1, 4, -1, 5, 9];
 document.querySelector("#numeros3").textContent = `const numeros = [${numeros.join(", ")}];`;
 
-// TODO: transformar(lista, operacion) hace a mano lo que hace map, sin usar map:
-//       recorre lista con for…of, llama a operacion con cada elemento, guarda lo que devuelve
-//       en un array nuevo y, al final, devuelve ese array.
+// Hace a mano lo mismo que map: aplica operacion a cada elemento y devuelve un array NUEVO.
 function transformar(lista, operacion) {
   const resultado = [];
   for (const elemento of lista) {
@@ -201,7 +194,6 @@ function mostrar3(nombre, resultado, conMap) {
   });
 }
 
-// El modelo: funcionará cuando hayas escrito transformar()
 function verDobles() {
   const resultado = transformar(numeros, (n) => n * 2);
   mostrar3("dobles", resultado, numeros.map((n) => n * 2));
@@ -226,9 +218,7 @@ function verAbsolutos() {
 // Ejercicio 4 · Dos contadores con closure
 // ============================================================
 
-// TODO: crearContador(paso) guarda una variable cuenta que empieza en 0 y DEVUELVE una función.
-//       Cada vez que se llama a esa función, suma paso a cuenta y devuelve el valor nuevo.
-//       paso vale 1 por defecto.
+// Devuelve una función que recuerda su propia variable cuenta (un closure). paso vale 1 por defecto.
 function crearContador(paso = 1) {
   let cuenta = 0;
   console.log("crearContador: paso =", paso, "en", paso);
@@ -236,7 +226,7 @@ function crearContador(paso = 1) {
   return () => {
     cuenta = cuenta + paso;
     return cuenta;
-  } 
+  };
 }
 
 const contarDeUno = crearContador();
@@ -293,17 +283,19 @@ class Alumno {
 
 class AlumnoFCT extends Alumno {
   constructor(nombre, curso, empresa) {
-    super(nombre, curso);
+    super(nombre, curso);   // primero el constructor de Alumno
     this.empresa = empresa;
   }
 
+  // Aprovecha la frase de Alumno y le añade la empresa
   presentarse() {
-    return `${super.presentarse()} (FCT en ${this.empresa})`;
+    return `${super.presentarse()}, en prácticas en ${this.empresa}`;
   }
 }
 
 const alumnos = [];
 
+// Dos alumnos de partida: un Alumno y un AlumnoFCT, con dos notas cada uno
 const lucia = new Alumno("Lucía Martín Ortega", "2º DAW");
 lucia.anadirNota(7);
 lucia.anadirNota(8.5);
@@ -314,9 +306,6 @@ pablo.anadirNota(6.5);
 
 alumnos.push(lucia, pablo);
 console.log("Ejercicio 5: alumnos de partida →", alumnos);
-
-// TODO: cuando tengas las clases, crea aquí dos alumnos de partida y añádelos a alumnos con push:
-//       un Alumno con dos notas y un AlumnoFCT con otras dos.
 
 // Ya está hecha: pinta una tarjeta por alumno en #listaAlumnos y actualiza #totalAlumnos
 function pintarAlumnos() {
@@ -415,9 +404,8 @@ pintarAlumnos();
 // Ejercicio 6 · Fechas y textos
 // ============================================================
 
-// TODO: diasHasta(fecha) devuelve cuántos días faltan desde hoy hasta fecha (negativo si ya pasó).
-//       Pon hoy a medianoche (hoy.setHours(0, 0, 0, 0)), resta las fechas, divide entre los milisegundos
-//       de un día y redondea con Math.round: con el cambio de hora, la resta no siempre da un número entero.
+// Días que faltan desde hoy hasta fecha (negativo si ya pasó). Hoy a medianoche y Math.round,
+// porque con el cambio de hora la resta no siempre da un número entero de días.
 function diasHasta(fecha) {
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
@@ -459,9 +447,7 @@ function mostrarDias() {
   console.log("Ejercicio 6: días →", dias);
 }
 
-// TODO: iniciales(nombreCompleto) devuelve las iniciales en mayúsculas: «lucía martín ortega» → «LMO».
-//       Encadena trim, split(" "), filter (para quitar las palabras vacías si hay espacios dobles),
-//       map (la primera letra de cada palabra, en mayúscula) y join("").
+// «lucía  martín ortega» → «LMO». El filter quita las palabras vacías que dejan los espacios dobles.
 function iniciales(nombreCompleto) {
   return nombreCompleto
     .trim()
@@ -471,8 +457,7 @@ function iniciales(nombreCompleto) {
     .join("");
 }
 
-// TODO: crearUsuario(nombreCompleto) devuelve las iniciales en minúsculas y tres cifras al azar, de 000 a 999:
-//       «lmo042». Pista: Math.random, Math.floor y padStart(3, "0").
+// «lucía martín ortega» → «lmo042»: iniciales en minúsculas y tres cifras al azar.
 function crearUsuario(nombreCompleto) {
   const numero = Math.floor(Math.random() * 1000);          // de 0 a 999
   const cifras = String(numero).padStart(3, "0");           // 42 → "042"
