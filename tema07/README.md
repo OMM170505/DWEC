@@ -16,7 +16,7 @@ Nada más cargar se ve mi nombre en la navbar y los dos alumnos de partida del e
 
 <img src="capturas/b-ej1-ej2.png" alt="El desglose del precio y una lista de películas" width="600">
 
-Un precio de 100 € con un 10 % de descuento y el 21 % de IVA da 108,90 €. `calcularPrecio()` solo calcula y devuelve el resultado con `return`; `mostrarPrecio()` lee el formulario, valida y pinta el desglose. A la derecha, el botón «Por año», con `sort` sobre una copia del array.
+Un precio de 50 € con un 10 % de descuento y el 21 % de IVA da 54,45 € (en la consola se ve la llamada a `calcularPrecio(50, 21, 10)`). `calcularPrecio()` solo calcula y devuelve el resultado con `return`; `mostrarPrecio()` lee el formulario, valida y pinta el desglose. Debajo, el botón «Por año», con `sort` sobre una copia del array.
 
 ### c) Ejercicios 3 y 4: tu callback y los contadores
 
@@ -34,7 +34,7 @@ Cuatro alumnos, dos de ellos en prácticas. `crearAlumno()` mira la casilla de l
 
 ![Los días que faltan para una fecha y unas iniciales](capturas/e-ej6-fechas-textos.png)
 
-He probado con el 25 de diciembre de 2026. Pongo hoy a medianoche con `setHours(0, 0, 0, 0)` y redondeo con `Math.round` porque, con el cambio de hora, algún día tiene 23 o 25 horas y la división no da un número entero. Las iniciales funcionan aunque el nombre tenga espacios dobles gracias al `filter`.
+He probado con el 17 de mayo de 2026, que ya pasó: salen -177 días, así que la página dice «Fue hace 177 días». Pongo hoy a medianoche con `setHours(0, 0, 0, 0)` y redondeo con `Math.round` porque, con el cambio de hora, algún día tiene 23 o 25 horas y la división no da un número entero. Con mi nombre salen las iniciales OMM y un usuario como omm448; las tres cifras cambian cada vez. Si el nombre tiene espacios dobles también funciona, gracias al `filter`.
 
 ## Reflexión
 
