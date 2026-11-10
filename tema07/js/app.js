@@ -42,8 +42,11 @@ function pintarLista(selector, textos) {
 //       iva vale 21 por defecto y descuento, 0 por defecto (parámetros por defecto).
 //       Primero se resta el descuento (un tanto por ciento de la base) y después se suma el IVA.
 //       Comprueba en la consola: calcularPrecio(100) tiene que dar 121.
-function calcularPrecio(base, iva, descuento) {
-
+function calcularPrecio(base, iva = 21, descuento = 0) {
+  const conDescuento = base - (base * descuento) / 100;
+  const precioFinal = conDescuento + (conDescuento * iva) / 100;
+  console.log("calcularPrecio:", base, iva, descuento, "→", precioFinal);
+  return precioFinal;
 }
 
 // Ya está hecha: 74.8 → "74.80 €"
@@ -52,14 +55,50 @@ function formatearEuros(cantidad) {
 }
 
 function mostrarPrecio() {
-  // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
-  // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
-  // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
-  //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
-  // TODO: oculta el error y pinta el desglose en #salida1 con pintarLista():
-  //       «Precio sin IVA: …», «Descuento: … %», «IVA: … %» y «Precio final: …» (con formatearEuros).
-}
+  const textoBase = document.querySelector("#base").value;
+  const iva = Number(document.querySelector("#iva").value);
+  const textoDescuento = document.querySelector("#descuento").value;
+  const error = document.querySelector("#error1");
+  const salida = document.querySelector("#salida1");
 
+  const base = Number(textoBase);
+
+  // La base no puede estar vacía ni ser negativa
+  if (textoBase === "" || base < 0) {
+    error.textContent = "Escribe un precio sin IVA que no sea negativo.";
+    error.classList.remove("d-none");
+    salida.textContent = "";
+    console.log("Ejercicio 1: base no válida");
+    return;
+  }
+
+  let descuento = 0;
+  let precio;
+
+  if (textoDescuento === "") {
+    // Sin descuento: no paso el tercer argumento y se usa el valor por defecto (0)
+    precio = calcularPrecio(base, iva);
+  } else {
+    descuento = Number(textoDescuento);
+    if (descuento < 0 || descuento > 100) {
+      error.textContent = "El descuento tiene que estar entre 0 y 100.";
+      error.classList.remove("d-none");
+      salida.textContent = "";
+      console.log("Ejercicio 1: descuento no válido");
+      return;
+    }
+    precio = calcularPrecio(base, iva, descuento);
+  }
+
+  error.classList.add("d-none");
+  pintarLista("#salida1", [
+    `Precio sin IVA: ${formatearEuros(base)}`,
+    `Descuento: ${descuento} %`,
+    `IVA: ${iva} %`,
+    `Precio final: ${formatearEuros(precio)}`
+  ]);
+  console.log("Ejercicio 1: precio final →", precio);
+}
 
 // ============================================================
 // Ejercicio 2 · Películas: de function a flecha
